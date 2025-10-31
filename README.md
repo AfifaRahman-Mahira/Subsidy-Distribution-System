@@ -6,7 +6,7 @@ A web-based platform designed to manage and distribute government or NGO subsidi
 - Farjana Hosen Moumita (223071001)
 - Afifa Rahman Mahira (223071002)
 - Purobi Akter (223071003)
-- 
+
 ## Database
 
 We have designed the database with the following tables:
