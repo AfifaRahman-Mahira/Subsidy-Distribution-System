@@ -43,7 +43,6 @@ The ER Diagram visualizes the database structure and relationships between table
 All diagram files are available in the `diagrams/` folder:
 
 - `er_diagram.png` → Image version of the ER Diagram  
-- `er_diagram.mmd` → Mermaid source (editable)  
 
 **Relationships:**  
 - USERS → BENEFICIARIES (1-to-many)  
