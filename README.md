@@ -7,7 +7,4 @@ A web-based platform designed to manage and distribute government or NGO subsidi
 - Afifa Rahman Mahira (223071002)
 - Purobi Akter (223071003)
 
-## Features
-- User registration and verification
-- Aid/subsidy request and approval tracking
-- Data analytics and transparency dashboard
+
