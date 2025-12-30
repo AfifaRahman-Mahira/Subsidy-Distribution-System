@@ -1,13 +1,14 @@
 const db = require('../utils/db');
 
-const createUser = (user, callback) => {
-  const { name, email, password, role } = user;
-  db.query('INSERT INTO users (name,email,password,role) VALUES (?,?,?,?)',
-    [name,email,password,role], callback);
+const User = {
+  create: (userData, callback) => {
+    const { name, email, password, role } = userData;
+    const query = 'INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)';
+    db.query(query, [name, email, password, role], callback);
+  },
+  findByEmail: (email, callback) => {
+    db.query('SELECT * FROM users WHERE email = ?', [email], callback);
+  }
 };
 
-const findUserByEmail = (email, callback) => {
-  db.query('SELECT * FROM users WHERE email = ?', [email], callback);
-};
-
-module.exports = { createUser, findUserByEmail };
+module.exports = User;
