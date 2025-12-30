@@ -1,13 +1,11 @@
 const User = require('../models/userModel');
 const bcrypt = require('bcrypt');
 
-// Registration
 exports.register = (req, res) => {
-  console.log('Register request body:', req.body); // debug
-
-  const { name, email, password, role } = req.body;
-  if (!name || !email || !password || !role)
+  const { name, nid, email, password, role } = req.body;
+  if (!name || !nid || !email || !password || !role) {
     return res.status(400).json({ message: 'All fields are required' });
+  }
 
   User.findByEmail(email, (err, results) => {
     if (err) return res.status(500).json({ message: err.message });
@@ -16,8 +14,7 @@ exports.register = (req, res) => {
     bcrypt.hash(password, 10, (err, hashedPassword) => {
       if (err) return res.status(500).json({ message: err.message });
 
-      User.create({ name, email, password: hashedPassword, role }, (err, result) => {
-        console.log('Insert err:', err, 'Result:', result); // DB insert status
+      User.create({ name, nid, email, password: hashedPassword, role }, (err, result) => {
         if (err) return res.status(500).json({ message: err.message });
         return res.status(201).json({ message: 'User registered successfully' });
       });
@@ -25,7 +22,6 @@ exports.register = (req, res) => {
   });
 };
 
-// Login
 exports.login = (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) return res.status(400).json({ message: 'All fields are required' });
@@ -39,7 +35,7 @@ exports.login = (req, res) => {
       if (err) return res.status(500).json({ message: err.message });
       if (!isMatch) return res.status(400).json({ message: 'Incorrect password' });
 
-      res.json({ message: 'Login successful', user: { id: user.id, name: user.name, email: user.email, role: user.role } });
+      res.json({ message: 'Login successful', user: { id: user.id, name: user.name, email: user.email, role: user.role, nid: user.nid } });
     });
   });
 };
